@@ -1,6 +1,9 @@
 
 "use client"
 
+import { signOut } from "firebase/auth"
+import { auth } from "@/lib/firebase"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -43,6 +46,13 @@ const navigation = [
 ]
 
 export function SidebarNav({ userRole = 'Administrador' }: { userRole?: Role }) {
+
+  const router = useRouter()
+
+const handleLogout = async () => {
+  await signOut(auth)
+  router.push("/login")
+}
   const pathname = usePathname()
   const { setOpenMobile, isMobile } = useSidebar()
 
@@ -101,7 +111,7 @@ export function SidebarNav({ userRole = 'Administrador' }: { userRole?: Role }) 
             <span className="text-[10px] text-muted-foreground uppercase">{userRole}</span>
           </div>
         </div>
-        <button className="flex w-full items-center gap-3 px-3 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-md transition-colors">
+        <button onClick={handleLogout} className="flex w-full items-center gap-3 px-3 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-md transition-colors">
           <LogOut className="h-5 w-5" />
           <span>Cerrar Sesión</span>
         </button>
