@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 82% 50%; /* #E61717 approximated */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 36 97% 51%; /* #FA9608 approximated */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 82% 50%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 82% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 36 97% 51%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 82% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.document-preview {
+  background-color: white !important;
+  color: black !important;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  margin: auto;
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+}
+
+/* Ensure text visibility in preview */
+.document-preview * {
+  color: black !important;
+}
+.document-preview .text-primary {
+  color: #E61717 !important;
+}
+.document-preview .bg-primary {
+  background-color: #E61717 !important;
+  color: white !important;
+}
+.document-preview .bg-primary * {
+  color: white !important;
+}
+.document-preview .text-gray-400 { color: #9ca3af !important; }
+.document-preview .text-gray-500 { color: #6b7280 !important; }
+.document-preview .text-gray-600 { color: #4b5563 !important; }
+.document-preview .text-accent { color: #FA9608 !important; }
+
+@media print {
+  .no-print, 
+  [data-sidebar="sidebar"], 
+  header.lg\:hidden,
+  .fixed.inset-0.bg-black\/80 {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    overflow: visible !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .document-preview {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    border: none !important;
+  }
+
+  /* Reset dialog constraints for printing */
+  div[role="dialog"] {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    transform: none !important;
+    border: none !important;
+    background: white !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+}
