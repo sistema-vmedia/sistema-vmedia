@@ -1,5 +1,6 @@
 "use client"
-import { useState } from "react"
+
+import { Suspense, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { ArrowLeft, Save, Loader2, FileText, Download, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -31,7 +32,7 @@ function NewContractPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  import { Suspense } from "react"
+
   // Pre-filled data from URL
   const preselectedClientId = searchParams.get("clientId")
   const preselectedStation = searchParams.get("station")
