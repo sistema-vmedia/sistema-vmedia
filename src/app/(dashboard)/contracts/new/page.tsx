@@ -1,6 +1,4 @@
-
 "use client"
-
 import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { ArrowLeft, Save, Loader2, FileText, Download, AlertCircle } from "lucide-react"
@@ -29,10 +27,11 @@ const STATIONS = [
   "XHJS Euforia 98.5 FM"
 ]
 
-export default function NewContractPage() {
+function NewContractPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  
+
+  import { Suspense } from "react"
   // Pre-filled data from URL
   const preselectedClientId = searchParams.get("clientId")
   const preselectedStation = searchParams.get("station")
@@ -246,5 +245,12 @@ export default function NewContractPage() {
         </Card>
       </form>
     </div>
+  )
+}
+export default function PageWrapper() {
+  return (
+    <Suspense fallback={<div>Cargando...</div>}>
+      <NewContractPage />
+    </Suspense>
   )
 }
